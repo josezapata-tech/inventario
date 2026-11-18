@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario | Reportes</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #263445;
+        }
+
+        .layout {
+            display: flex !important;
+            flex-direction: row !important;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            min-width: 260px;
+            background: #12355b;
+            color: white;
+            padding: 25px 16px;
+        }
+
+        .sidebar h2 {
+            margin: 0 0 30px;
+            font-size: 23px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 13px 14px;
+            margin-bottom: 7px;
+            border-radius: 7px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #24527c;
+        }
+
+        .main-content {
+            flex: 1;
+            min-width: 0;
+            padding: 30px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            margin: 0 0 7px;
+            font-size: 28px;
+        }
+
+        .page-header p {
+            color: #718096;
+            margin: 0;
+        }
+
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: end;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px #0000000b;
+        }
+
+        .filter-field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .filter-field label {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #dce2e8;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        button {
+            border: none;
+            border-radius: 7px;
+            padding: 11px 17px;
+            cursor: pointer;
+            font-weight: bold;
+            background: #1769aa;
+            color: white;
+        }
+
+        button:hover {
+            background: #10558c;
+        }
+
+        .secondary-button {
+            background: #64748b;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(150px, 1fr));
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #0000000b;
+        }
+
+        .card p {
+            margin: 0 0 12px;
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .card h2 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .panel {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #0000000b;
+            min-width: 0;
+        }
+
+        .panel h2 {
+            font-size: 18px;
+            margin: 0 0 20px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 280px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+        }
+
+        th, td {
+            padding: 13px 12px;
+            border-bottom: 1px solid #edf0f3;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            color: #64748b;
+            background: #f8fafc;
+        }
+
+        .empty-message {
+            color: #718096;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 1000px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .layout {
+                flex-direction: column !important;
+            }
+
+            .sidebar {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .main-content {
+                padding: 18px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <h2>INVENTARIO</h2>
+
+           <a href="index.html" class="active">Panel principal</a>
+           <a href="productos.html">Productos</a>
+           <a href="categorias.html">Categorías</a>
+           <a href="proveedores.html">Proveedores</a>
+           <a href="ventas.html">Ventas</a>
+           <a href="movimientos.html">Movimientos</a>
+           <a href="reportes.html" class="active">Reportes</a>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="page-header">
+            <div>
+                <h1>Reportes y estadísticas</h1>
+                <p>Consulta las ventas y el comportamiento del inventario.</p>
+            </div>
+        </header>
+
+        <section class="filters">
+            <div class="filter-field">
+                <label for="fechaInicio">Fecha inicial</label>
+                <input type="date" id="fechaInicio">
+            </div>
+
+            <div class="filter-field">
+                <label for="fechaFin">Fecha final</label>
+                <input type="date" id="fechaFin">
+            </div>
+
+            <button id="btnFiltrar">Aplicar filtros</button>
+            <button id="btnLimpiar" class="secondary-button">Limpiar</button>
+        </section>
+
+        <section class="cards">
+
+            <div class="card">
+                <p>Total de ventas</p>
+                <h2 id="totalVentas">0</h2>
+            </div>
+
+            <div class="card">
+                <p>Ingresos generados</p>
+                <h2 id="ingresos">$0.00</h2>
+            </div>
+
+            <div class="card">
+                <p>Productos activos</p>
+                <h2 id="productosActivos">0</h2>
+            </div>
+
+            <div class="card">
+                <p>Productos con stock bajo</p>
+                <h2 id="stockBajo">0</h2>
+            </div>
+
+        </section>
+
+        <section class="section-grid">
+
+            <div class="panel">
+                <h2>Ventas por día</h2>
+                <div class="chart-container">
+                    <canvas id="graficaVentas"></canvas>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Productos más vendidos</h2>
+                <div class="chart-container">
+                    <canvas id="graficaProductos"></canvas>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="panel" style="margin-bottom: 25px;">
+            <h2>Detalle de productos más vendidos</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Unidades vendidas</th>
+                            <th>Ingresos generados</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaMasVendidos">
+                        <tr>
+                            <td colspan="3" class="empty-message">
+                                Cargando información...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Últimas ventas</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Folio</th>
+                            <th>Fecha</th>
+                            <th>Método de pago</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaUltimasVentas">
+                        <tr>
+                            <td colspan="4" class="empty-message">
+                                Cargando información...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/conexion.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/reportes.js"></script>
+
+</body>
+</html>

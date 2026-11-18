@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores | Inventario</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<div class="contenedor">
+
+    <aside class="sidebar">
+        <h2>INVENTARIO</h2>
+        <p class="subtitulo">Tienda de abarrotes</p>
+
+        <nav>
+            <a href="index.html">Panel principal</a>
+            <a href="productos.html">Productos</a>
+            <a href="categorias.html">Categorías</a>
+            <a href="proveedores.html" class="activo">Proveedores</a>
+            <a href="ventas.html">Ventas</a>
+            <a href="movimientos.html">Movimientos</a>
+            <a href="reportes.html">Reportes</a>
+
+        </nav>
+    </aside>
+
+    <main class="contenido">
+
+        <header class="encabezado">
+            <div>
+                <h1>Proveedores</h1>
+                <p>Administra los proveedores de tu tienda.</p>
+            </div>
+            <span>Administrador</span>
+        </header>
+
+        <section class="tarjetas">
+            <div class="tarjeta">
+                <h3>Total de proveedores</h3>
+                <h2 id="totalProveedores">0</h2>
+                <p>Proveedores registrados</p>
+            </div>
+        </section>
+
+        <section class="seccion">
+            <h2 id="tituloProveedor">Registrar proveedor</h2>
+
+            <form id="formProveedor">
+
+                <input type="hidden" id="id_proveedor">
+
+                <div class="form-grid">
+
+                    <div>
+                        <label for="nombreProveedor">Nombre del proveedor</label>
+                        <input type="text" id="nombreProveedor"
+                               placeholder="Nombre del proveedor" required>
+                    </div>
+
+                    <div>
+                        <label for="telefonoProveedor">Teléfono</label>
+                        <input type="tel" id="telefonoProveedor"
+                               placeholder="Número telefónico">
+                    </div>
+
+                    <div>
+                        <label for="correoProveedor">Correo electrónico</label>
+                        <input type="email" id="correoProveedor"
+                               placeholder="correo@ejemplo.com">
+                    </div>
+
+                    <div>
+                        <label for="direccionProveedor">Dirección</label>
+                        <input type="text" id="direccionProveedor"
+                               placeholder="Dirección del proveedor">
+                    </div>
+
+                </div>
+
+                <div class="acciones-form">
+                    <button type="submit" id="btnGuardarProveedor">
+                        Guardar proveedor
+                    </button>
+
+                    <button type="button" id="btnCancelarProveedor">
+                        Limpiar
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <section class="seccion">
+
+            <div class="encabezado-tabla">
+                <h2>Listado de proveedores</h2>
+
+                <input type="search" id="buscarProveedor"
+                       placeholder="Buscar proveedor...">
+            </div>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Dirección</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tablaProveedores">
+                        <tr>
+                            <td colspan="6">Cargando proveedores...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/conexion.js"></script>
+<script src="js/proveedores.js"></script>
+
+</body>
+</html>

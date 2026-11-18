@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías | Inventario</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<div class="contenedor">
+
+    <aside class="sidebar">
+        <h2>INVENTARIO</h2>
+        <p class="subtitulo">Tienda de abarrotes</p>
+
+        <nav>
+            <a href="index.html">Panel principal</a>
+            <a href="productos.html">Productos</a>
+            <a href="categorias.html" class="activo">Categorías</a>
+            <a href="proveedores.html">Proveedores</a>
+            <a href="ventas.html">Ventas</a>
+            <a href="movimientos.html">Movimientos</a>
+            <a href="reportes.html">Reportes</a>
+        </nav>
+    </aside>
+
+    <main class="contenido">
+
+        <header class="encabezado">
+            <div>
+                <h1>Categorías</h1>
+                <p>Organiza los productos de tu tienda.</p>
+            </div>
+            <span>Administrador</span>
+        </header>
+
+        <section class="tarjetas">
+            <div class="tarjeta">
+                <h3>Total de categorías</h3>
+                <h2 id="totalCategorias">0</h2>
+                <p>Categorías registradas</p>
+            </div>
+        </section>
+
+        <section class="seccion">
+            <h2 id="tituloFormulario">Registrar categoría</h2>
+
+            <form id="formCategoria">
+                <input type="hidden" id="id_categoria">
+
+                <div class="form-grid">
+                    <div>
+                        <label for="nombreCategoria">Nombre</label>
+                        <input type="text" id="nombreCategoria"
+                               placeholder="Nombre de la categoría" required>
+                    </div>
+
+                    <div>
+                        <label for="descripcionCategoria">Descripción</label>
+                        <input type="text" id="descripcionCategoria"
+                               placeholder="Descripción de la categoría">
+                    </div>
+                </div>
+
+                <div class="acciones-form">
+                    <button type="submit" id="btnGuardarCategoria">
+                        Guardar categoría
+                    </button>
+                    <button type="button" id="btnCancelarCategoria">
+                        Limpiar
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="seccion">
+            <div class="encabezado-tabla">
+                <h2>Listado de categorías</h2>
+                <input type="search" id="buscarCategoria"
+                       placeholder="Buscar categoría...">
+            </div>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaCategorias">
+                        <tr>
+                            <td colspan="4">Cargando categorías...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/conexion.js"></script>
+<script src="js/categorias.js"></script>
+
+</body>
+</html>
